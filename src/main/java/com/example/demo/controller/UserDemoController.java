@@ -2,17 +2,17 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.service.CustomUserDetailsService;
-import com.example.demo.service.UserDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.Collections;
 
-@RestController()
-@RequestMapping("demo-user")
+@RestController("demo-user")
 public class UserDemoController {
 
     private final CustomUserDetailsService customUserDetailsService;
@@ -20,7 +20,6 @@ public class UserDemoController {
     @Autowired
     public UserDemoController(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
-
     }
 
     @PostMapping
@@ -31,11 +30,7 @@ public class UserDemoController {
     }
 
     @GetMapping
-    public ResponseEntity<String> checkUser(@PathVariable String email ) {
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
-        return ResponseEntity.ok()
-                .body(userDetails.getUsername());
+    public ResponseEntity isSignedIn() {
+        return ResponseEntity.ok().build();
     }
-
-
 }

@@ -34,6 +34,25 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
     @Override public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new GrantedAuthority() {
 
@@ -44,27 +63,38 @@ public class User implements UserDetails {
         });
     }
 
-    @Override public String getPassword() {
-        return null;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    @Override public String getUsername() {
-        return null;
+    @Override
+    public String getUsername() {
+        return getEmail();
     }
 
-    @Override public boolean isAccountNonExpired() {
-        return false;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    @Override public boolean isAccountNonLocked() {
-        return false;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    @Override public boolean isCredentialsNonExpired() {
-        return false;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    @Override public boolean isEnabled() {
-        return false;
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return email + password;
     }
 }
